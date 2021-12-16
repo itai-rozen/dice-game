@@ -1,0 +1,11 @@
+.controller-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 20%;
+}
+
+.score-container {
+    display: flex;
+    flex-direction: column;
+}
