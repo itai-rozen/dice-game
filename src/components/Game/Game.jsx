@@ -1,54 +1,78 @@
 import React from 'react'
 import Controller from '../Controller/Controller'
 import Player from '../Player/Player'
+import Settings from '../Settings/Settings'
 import './game.css'
 
 class Game extends React.Component {
-    constructor(){
-        super()
-        this.state = {
-            players: [
-                 {id: 0, name: 'Player1', currTurnScore: null, score: null, isActive: true},
-                 {id: 1, name: 'Player2', currTurnScore: null, score: null, isActive: false}
-            ],
+
+        state = {
+            player0: { id: 0, avatarUrl:'', name: 'Player1', currTurnScore: 0, score: 0, isActive: true, isWinner: false },
+            player1: { id: 1, avatarUrl:'', name: 'Player2', currTurnScore: 0, score: 0, isActive: false, isWinner: false },
             isRunning: false,
-            dice0 :null,
-            dice1 :null,
-            activePlayerId: 0
+            dice0: 0,
+            dice1: 0,
+            targetPoints: 20,
+            isSettingsMode: false
         }
-    }
+    
 
     updateState = (stateName, stateValue) => {
-        this.setState(() => {
+        this.setState({ [stateName]: stateValue }, () => {
             return {
                 [stateName]: stateValue
             }
         })
-
     }
 
-    render(){
-        console.log(this.state)
+
+    updateObjState = (playerObj, keys, values) => {
+        const activePlayerCopy = Object.assign({}, playerObj)
+        keys.forEach((key, i) => {
+            if (key === 'score' || key === 'currTurnScore' || key === 'avatarUrl') {
+                activePlayerCopy[key] = (values[i] === 0) ?
+                    values[i] :
+                    activePlayerCopy[key] + values[i]
+            } else activePlayerCopy[key] = values[i]
+            if (activePlayerCopy.score + activePlayerCopy.currTurnScore >= this.state.targetPoints) activePlayerCopy.isWinner = true
+        })
+        this.updateState(`player${playerObj.id}`, activePlayerCopy)
+    }
+
+
+    render() {
+
+        const { player0, player1,targetPoints, isSettingsMode } = this.state
         return (
             <div className="game-container">
-            <div className="players-container">
-            {
-                this.state.players.map(player => {
-                    return <Player
-                            key={player.id} 
-                            id={player.id}
-                            name={player.name}
-                            currTurnScore={player.currTurnScore}
-                            score={player.score}
-                            isActive={player.isActive}
-                            updateState={this.updateState}  
-                    />
-                })
-            }
-            </div>
-            <div className="controller-container">
-                <Controller dice={[this.state.dice0,this.state.dice1]}  updateState={this.updateState} />
-            </div>
+                <div className="players-container">
+                    {
+                        [player0, player1].map(player => {
+                            const {avatarUrl, id, name, currTurnScore, score, isActive, isWinner } = player
+                            return <Player
+                                key={id}
+                                avatarUrl={avatarUrl}
+                                id={id}
+                                name={name}
+                                currTurnScore={currTurnScore}
+                                score={score}
+                                isActive={isActive}
+                                isWinner={isWinner}
+                                updateState={this.updateState}
+                            />
+                        })
+                    }
+                </div>
+                <div>
+                    <Controller state={this.state} updateObjState={this.updateObjState} updateState={this.updateState} />
+                </div>
+                {isSettingsMode && <Settings 
+                                    player0={player0} 
+                                    player1={player1} 
+                                    targetPoints={targetPoints} 
+                                    updateObjState={this.updateObjState}  
+                                    updateState={this.updateState} />}
+
             </div>
         )
     }

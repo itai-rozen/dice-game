@@ -1,0 +1,9 @@
+.dice-container {
+    display: flex;
+    justify-content: center;
+    width: 35%;
+}
+
+.dice-container img {
+    width: 70%;
+}

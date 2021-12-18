@@ -9,8 +9,9 @@ class Dice extends React.Component {
     render(){
         return (
             <div className="dice-container">
-                {/* <img src="" alt="dice" /> */}
-                <p>{this.props.number}</p>
+               {
+               (this.props.number > 0) && <img src={`${this.props.number}.png`} alt="dice" />
+               } 
             </div>
         )
     }
