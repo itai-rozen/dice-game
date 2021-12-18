@@ -25,6 +25,11 @@ class Game extends React.Component {
         })
     }
 
+    checkWinner = (score, currTurnScore) => {
+        console.log('target points: ',this.state.targetPoints)
+      return  (score + currTurnScore >= this.state.targetPoints) 
+    }
+
 
     updateObjState = (playerObj, keys, values) => {
         const activePlayerCopy = Object.assign({}, playerObj)
@@ -33,8 +38,14 @@ class Game extends React.Component {
                 activePlayerCopy[key] = (values[i] === 0) ?
                     values[i] :
                     activePlayerCopy[key] + values[i]
+                    
+                    console.log('active player score: ',activePlayerCopy.score)
+                    console.log('active player currTurn score: ',activePlayerCopy.currTurnScore)
+                    const playerWon = this.checkWinner( activePlayerCopy.score,activePlayerCopy.currTurnScore)
+                    console.log('player won? ', playerWon)
+                    this.updateState('isRunning', !playerWon)
+                    activePlayerCopy.isWinner = playerWon
             } else activePlayerCopy[key] = values[i]
-            if (activePlayerCopy.score + activePlayerCopy.currTurnScore >= this.state.targetPoints) activePlayerCopy.isWinner = true
         })
         this.updateState(`player${playerObj.id}`, activePlayerCopy)
     }

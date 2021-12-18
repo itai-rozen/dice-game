@@ -2,9 +2,7 @@ import React from 'react'
 import './settings.css'
 
 class Settings extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+
 
     handleSubmit = e => {
         e.preventDefault()

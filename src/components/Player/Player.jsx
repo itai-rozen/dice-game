@@ -2,9 +2,7 @@ import React from 'react'
 import './player.css'
 
 class Player extends React.Component {
-    constructor(props){
-        super(props)
-    }
+
 
     render(){
         const {avatarUrl,isWinner, name, currTurnScore,score,isActive} = this.props

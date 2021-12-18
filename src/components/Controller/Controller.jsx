@@ -3,9 +3,7 @@ import Dice from '../Dice/Dice'
 import './controller.css'
 
 class Controller extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+
 
     getRandomDiceNumber = () => Math.floor(Math.random() * 6 + 1)
 
@@ -34,24 +32,17 @@ class Controller extends React.Component {
 
 
     handleNewGame = () => {
-        const { dice0, dice1, player0, player1 } = this.props.state
+        const {  player0, player1 } = this.props.state
         const { updateObjState, updateState } = this.props
         updateState('dice0', 0)
         updateState('dice1', 0)
         updateState('isRunning',true)
-        updateObjState(player0, ['score', 'currTurnScore', 'isWinner', 'isActive'], [0, 0, false, false])
-        updateObjState(player1, ['score', 'currTurnScore', 'isWinner', 'isActive'], [0, 0, false, false])
-        const randomPlayer = (Math.random() > 0.5) ? player0 : player1
-        updateObjState(randomPlayer, ['isActive'], [true])
+        const randomIsActive = Math.random() > 0.5
+        updateObjState(player0, ['score', 'currTurnScore', 'isWinner', 'isActive'], [0, 0, false, randomIsActive])
+        updateObjState(player1, ['score', 'currTurnScore', 'isWinner', 'isActive'], [0, 0, false, !randomIsActive])
     }
 
-    checkWinner = () => {
-        const { updateState } = this.props
-        const winner = this.getPlayerByProp('isWinner', true)
-        if (winner){
-            updateState('isRunning',false)
-        }
-    }
+
 
     handleRoll = () => {
         const { updateState, updateObjState } = this.props
@@ -61,7 +52,7 @@ class Controller extends React.Component {
         const nonActivePlayer = this.getPlayerByProp('isActive', false)
         updateState('dice0', dice0)
         updateState('dice1', dice1)
-        if (dice0 === dice1) {
+        if (dice0 === 6 && dice1 === 6) {
             updateObjState(activePlayer, ['currTurnScore', 'isActive'], [0, false])
             updateObjState(nonActivePlayer, ['isActive'], [true])
         }
@@ -71,15 +62,13 @@ class Controller extends React.Component {
     }
 
 
-
     render() {
         const { state, updateState } = this.props
         const { dice0, dice1,targetPoints,isRunning } = state
-        this.checkWinner()
         return (
             <div className="controller-container">
                 <button className={`${!isRunning && "glow"} new-game-btn`} onClick={() => this.handleNewGame()}>New game</button>
-                <button className={`${!isRunning && "glow"} new-game-btn`} onClick={() => updateState('isSettingsMode',true)}>Settings</button>
+                <button disabled={isRunning} className={`${!isRunning && "glow"} new-game-btn`} onClick={() => updateState('isSettingsMode',true)}>Settings</button>
                 <div className="score-container">
                     <h4>Target Score</h4>
                     <p onChange={() => this.handleInput} className="score-input">{targetPoints}</p>
