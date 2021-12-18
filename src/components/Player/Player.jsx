@@ -9,12 +9,16 @@ class Player extends React.Component {
         return (
             <div className={"player-container " + (isActive && "active")}>
                 <img src={avatarUrl || 'mk.png'} alt="avatar" className="player-avatar" />
-                <h1 className="player-name">{name}</h1>
-                <h2 className="turn-score">{currTurnScore}</h2>
+                <h2 className="player-name">{name}</h2>
+                <h1 className="turn-score">{currTurnScore}</h1>
                 <div className="winner-container">
                     {isWinner && <h1>{name} Won!!</h1>} 
                 </div>
                 <h3 className="score">{score}</h3>
+                <div className="winner-container">
+                    {isWinner && <img className='fatality' src="fatality.png" alt="" /> } 
+                </div>
+
             </div>
         )
     }

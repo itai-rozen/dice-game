@@ -24,8 +24,8 @@ class Controller extends React.Component {
         const { updateObjState } = this.props
         const activePlayer = this.getPlayerByProp('isActive', true)
         const nonActivePlayer = this.getPlayerByProp('isActive', false)
-        const { score, currTurnScore } = activePlayer
-        updateObjState(activePlayer, ['score', 'currTurnScore', 'isActive'], [score + currTurnScore, 0, false])
+        const {  score,currTurnScore } = activePlayer
+        updateObjState(activePlayer, ['score', 'currTurnScore', 'isActive'], [score+currTurnScore, 0, false])
         updateObjState(nonActivePlayer, ['isActive'], [true])
     }
 
@@ -67,8 +67,11 @@ class Controller extends React.Component {
         const { dice0, dice1,targetPoints,isRunning } = state
         return (
             <div className="controller-container">
+                <div className="side-btn-container">
+
                 <button className={`${!isRunning && "glow"} new-game-btn`} onClick={() => this.handleNewGame()}>New game</button>
                 <button disabled={isRunning} className={`${!isRunning && "glow"} new-game-btn`} onClick={() => updateState('isSettingsMode',true)}>Settings</button>
+                </div>
                 <div className="score-container">
                     <h4>Target Score</h4>
                     <p onChange={() => this.handleInput} className="score-input">{targetPoints}</p>
@@ -77,8 +80,10 @@ class Controller extends React.Component {
                     <Dice number={dice0} />
                     <Dice number={dice1} />
                 </div>
-                <button  disabled={ !isRunning || (!dice0 && !dice1)} onClick={() => this.handleHold()}>Hold</button>
+                <div className="side-btn-container">
+                <button  disabled={ !isRunning} onClick={() => this.handleHold()}>Hold</button>
                 <button disabled={!isRunning } onClick={() => this.handleRoll()}>Roll Dice</button>
+                </div>
             </div>
         )
     }

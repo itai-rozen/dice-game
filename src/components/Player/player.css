@@ -18,7 +18,7 @@
     opacity: 1;
     background:linear-gradient(to bottom, #d50D7C,#7A121E );
     background:linear-gradient(to bottom, #F5BD7C,#BA121E,#F5BD7C );
-    border: 5px solid #B2FFA9;
+    border: 5px solid #F8FF53;
 
 }
 
@@ -26,6 +26,28 @@
     width: 100px;
 }
 
+
 .winner-container {
     height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.winner-container img.fatality {
+    width: 80%;
+    margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+    .player-container h3 {
+        font-size: 1rem;
+    }
+    .player-container h1 {
+        font-size: 1.2rem;
+    }
+
+    .player-container img {
+        width: 50px;
+    }
+    
 }

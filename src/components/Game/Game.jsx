@@ -34,11 +34,11 @@ class Game extends React.Component {
     updateObjState = (playerObj, keys, values) => {
         const activePlayerCopy = Object.assign({}, playerObj)
         keys.forEach((key, i) => {
-            if (key === 'score' || key === 'currTurnScore' || key === 'avatarUrl') {
+            if (key === 'currTurnScore' || key === 'avatarUrl') {
                 activePlayerCopy[key] = (values[i] === 0) ?
                     values[i] :
                     activePlayerCopy[key] + values[i]
-                    
+
                     console.log('active player score: ',activePlayerCopy.score)
                     console.log('active player currTurn score: ',activePlayerCopy.currTurnScore)
                     const playerWon = this.checkWinner( activePlayerCopy.score,activePlayerCopy.currTurnScore)

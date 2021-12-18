@@ -7,3 +7,15 @@
 .dice-container img {
     width: 70%;
 }
+
+@media (max-width :  650px){
+    .dice-container {
+        flex-direction: column;
+        align-items: center;
+        width: 100px;
+    }
+
+    .dice-container img {
+        width: 50%;
+    }
+}
