@@ -7,6 +7,7 @@ class Settings extends React.Component {
     handleSubmit = e => {
         e.preventDefault()
         this.props.updateState('isSettingsMode', false)
+        this.props.playAudio('./sounds/outstanding.mp3')
     }
     handleChange = e => {
         const { id, value } = e.target

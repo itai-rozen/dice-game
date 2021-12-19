@@ -5,6 +5,7 @@ import './controller.css'
 class Controller extends React.Component {
 
 
+
     getRandomDiceNumber = () => Math.floor(Math.random() * 6 + 1)
 
     getPlayers = () => {
@@ -40,6 +41,7 @@ class Controller extends React.Component {
         const randomIsActive = Math.random() > 0.5
         updateObjState(player0, ['score', 'currTurnScore', 'isWinner', 'isActive'], [0, 0, false, randomIsActive])
         updateObjState(player1, ['score', 'currTurnScore', 'isWinner', 'isActive'], [0, 0, false, !randomIsActive])
+        this.props.playAudio('./sounds/fight.mp3')
     }
 
 
@@ -55,11 +57,14 @@ class Controller extends React.Component {
         if (dice0 === 6 && dice1 === 6) {
             updateObjState(activePlayer, ['currTurnScore', 'isActive'], [0, false])
             updateObjState(nonActivePlayer, ['isActive'], [true])
+            this.props.playAudio('./sounds/toasty.mp3')
         }
         else {
             updateObjState(activePlayer, ['currTurnScore'], [dice0 + dice1])
+            this.props.playAudio(`./sounds/hit${this.getRandomDiceNumber()}.mp3`)
         }
     }
+
 
 
     render() {
