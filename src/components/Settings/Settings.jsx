@@ -9,13 +9,15 @@ class Settings extends React.Component {
         this.props.updateState('isSettingsMode', false)
         this.props.playAudio('./sounds/outstanding.mp3')
     }
+
     handleChange = e => {
         const { id, value } = e.target
         if (value) {
             if (id !== 'targetPoints') {
                 this.props.updateObjState(this.props[id], ['name'], [value])
             } else {
-                this.props.updateState(id, value)
+                if ( value > 10) this.props.updateState(id, value)
+                else this.props.updateState(id, 10)
             }
         }
     }
@@ -69,7 +71,7 @@ class Settings extends React.Component {
                         <input id="player0" data-state="player0" type="text" placeholder={player0.name} />
                         <label htmlFor="player1">Player 2  Name</label>
                         <input id="player1" data-state="player1" type="text" placeholder={player1.name} />
-                        <label htmlFor="targetPoints">Target Score</label>
+                        <label htmlFor="targetPoints">Target Score ( 10 or higher)</label>
                         <input type="number" data-state="targetPoints" id="targetPoints" placeholder={targetPoints} />
                         <input type="submit" value="Ok" />
                     </div>

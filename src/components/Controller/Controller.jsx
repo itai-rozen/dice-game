@@ -54,7 +54,7 @@ class Controller extends React.Component {
         const nonActivePlayer = this.getPlayerByProp('isActive', false)
         updateState('dice0', dice0)
         updateState('dice1', dice1)
-        if (dice0 === 6 && dice1 === 6) {
+        if (dice0 === dice1) {
             updateObjState(activePlayer, ['currTurnScore', 'isActive'], [0, false])
             updateObjState(nonActivePlayer, ['isActive'], [true])
             this.props.playAudio('./sounds/toasty.mp3')
@@ -65,17 +65,21 @@ class Controller extends React.Component {
         }
     }
 
-
+    handleSettings = () => {
+        this.props.updateState('isSettingsMode',true)
+        this.handleNewGame()
+    }
+    
 
     render() {
-        const { state, updateState } = this.props
+        const { state } = this.props
         const { dice0, dice1,targetPoints,isRunning } = state
         return (
             <div className="controller-container">
                 <div className="side-btn-container">
 
                 <button className={`${!isRunning && "glow"} new-game-btn`} onClick={() => this.handleNewGame()}>New game</button>
-                <button disabled={isRunning} className={`${!isRunning && "glow"} new-game-btn`} onClick={() => updateState('isSettingsMode',true)}>Settings</button>
+                <button disabled={isRunning} className={`${!isRunning && "glow"} new-game-btn`} onClick={() => this.handleSettings()}>Settings</button>
                 </div>
                 <div className="score-container">
                     <h4>Target Score</h4>
