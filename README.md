@@ -1,4 +1,4 @@
-# Mortal Dice Game! <img src="https://user-images.githubusercontent.com/45075787/174149835-1482b9d2-8226-444d-974b-3bb7761c7aaa.png" alt="mortal kombat logo" />
+# Mortal Dice Game! <img src="https://user-images.githubusercontent.com/45075787/174149835-1482b9d2-8226-444d-974b-3bb7761c7aaa.png" width="50px" alt="mortal kombat logo" />
 live demo: https://itai-rozen-dice-game.netlify.app/
 
 ## The most badass dice game you'll ever encounter.
