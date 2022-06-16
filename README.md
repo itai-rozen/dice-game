@@ -12,3 +12,9 @@ live demo: https://itai-rozen-dice-game.netlify.app/
 Bonus - players can change name & avatar in the settings menu. You can choose any character from the awesome Mortal Kombat II. In other words - choose your destiny.
 Bonus II - turn on the sound! you'll enjoy some mesmerizing MKII SFX (toasty!) during the game.
 
+<div>
+ <img src="https://user-images.githubusercontent.com/45075787/174148947-2f613c37-4d7f-4c35-a80c-923cb49bd3d3.png" alt="dice game settings" title="dice game settings" />
+</div>
+<div>
+ <img src="https://user-images.githubusercontent.com/45075787/174148969-63360c55-ce5f-4f1e-8519-ccd8aa3572c5.png" alt="dice game win" title="dice game win" />
+</div>
