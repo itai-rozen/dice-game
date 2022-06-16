@@ -1,4 +1,4 @@
-# Mortal Dice Game! <img src="https://logos-world.net/mortal-kombat-logo/" alt="mortal kombat logo" />
+# Mortal Dice Game! <img src="https://user-images.githubusercontent.com/45075787/174149835-1482b9d2-8226-444d-974b-3bb7761c7aaa.png" alt="mortal kombat logo" />
 live demo: https://itai-rozen-dice-game.netlify.app/
 
 ## The most badass dice game you'll ever encounter.
@@ -18,3 +18,4 @@ Bonus II - turn on the sound! you'll enjoy some mesmerizing MKII SFX (toasty!) d
 <div>
  <img src="https://user-images.githubusercontent.com/45075787/174148969-63360c55-ce5f-4f1e-8519-ccd8aa3572c5.png" alt="dice game win" title="dice game win" />
 </div>
+
